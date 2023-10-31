@@ -1,6 +1,7 @@
 public class Processo extends Thread{
     private String  nome;
     private int numeroInteracoes;
+    private int prioridade;
     public String getNome() {
         return nome;
     }
@@ -13,11 +14,17 @@ public class Processo extends Thread{
     public void setNumeroInterações(int numeroInteracoes) {
         this.numeroInteracoes = numeroInteracoes;
     }
+    public int getPrioridade() {
+        return prioridade;
+    }
+    public void setPrioridade(int prioridade) {
+        this.prioridade = prioridade;
+    }
 
     public Processo(){
 
     }
-    public Processo(String nome, int numeroInteracoes){
+    public Processo(String nome, int numeroInteracoes, int prioridade){
         this.nome=nome;
         this.numeroInteracoes=numeroInteracoes;
     }
@@ -26,6 +33,13 @@ public class Processo extends Thread{
 
         for (int i= 0; i < numeroInteracoes; i++) {
             System.out.println("Processo: "+nome+ ": "+i);
+            //yield();
+        
+            try{
+                Thread.sleep(i *100);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
